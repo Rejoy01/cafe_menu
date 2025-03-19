@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import MenuCategory from "../MenuCategory/MenuCategory";
 import { Container, Select, Title } from "@mantine/core";
-import menuItems from "../../Data/MenuItems";
+import menuItems, { cafeColors } from "../../Data/MenuItems";
 import MenuItem from "../MenuItem/MenuItem";
 
 
@@ -19,18 +19,18 @@ const Body = () => {
     return [{ category: selectedCategory, items: menuItems[selectedCategory] }];
   };
   return (
-    <Container>
+    <Container style={{ background: cafeColors.background, padding: '20px', borderRadius: '8px', minHeight: '100vh' }}>
     <Select
       data={categories}
       value={selectedCategory}
       onChange={setSelectedCategory}
       label="Select Category"
       placeholder="Choose category"
-      style={{ marginBottom: 20 }}
+      style={{ marginBottom: 20 , background: cafeColors.selectBackground, color: cafeColors.text, borderRadius: '5px' }}
     />
     {getFilteredItems().map(({ category, items }) => (
       <div key={category}>
-        <Title order={2} style={{ marginBottom: 10 }}>{category}</Title>
+        <Title order={2} style={{ marginBottom: 10 , color: cafeColors.text}}>{category}</Title>
         {items.map((item, index) => (
           <MenuItem key={index} name={item.name} price={item.price} />
         ))}
